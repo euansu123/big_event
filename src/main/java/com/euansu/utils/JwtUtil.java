@@ -12,9 +12,10 @@ public class JwtUtil {
 
     // 接收业务数据，生成token并返回
     public static String generateToken(Map<String, Object> claims) {
+        // 设置token有效期为一天
         return JWT.create()
                 .withClaim("claims",claims)
-                .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 30))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
                 .sign(Algorithm.HMAC256(SECRET));
     }
 
